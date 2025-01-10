@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Anmv1">
+
+    <title>{% block title %} VPBank {% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'classic.css' %}">
+
+    {% block css_files %}
+    {% endblock %}
+
+    <link rel="preconnect" href="//fonts.gstatic.com/" crossorigin="">
+</head>
+
+<body>
+
+{% if user.is_authenticated %}
+    {#   Insert navbar:     #}
+    <div class="wrapper">
+        {% include "includes/navbar.html" %}
+        <div class="main">
+            {% include "includes/navbar_horizontal.html" %}
+            <main class="content">
+				<div class="container p-0">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </main>
+        </div>
+
+    </div>
+{% else %}
+    {% block login %}
+    {% endblock %}
+{% endif %}
+
+{% block register %}
+{% endblock %}
+
+</body>
+
+<script src="{% static 'app.js' %}"></script>
+</html>
